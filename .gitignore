@@ -1,0 +1,17 @@
+# Local run output
+.factory-artifacts/
+.worktrees/
+
+# Runtime secrets and local overrides
+.env
+.env.*
+!.env.example
+config/local.*
+
+# Python validation artifacts
+__pycache__/
+*.py[cod]
+
+# Tool-specific skill mirrors. .agents/skills is the canonical installation.
+.claude/skills/
+.hermes/skills/
