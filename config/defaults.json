@@ -1,0 +1,172 @@
+{
+  "version": 1,
+  "execution": {
+    "defaultMode": "dry-run",
+    "requireExplicitTargetWrite": true,
+    "onDirtyTarget": "stop-and-report"
+  },
+  "targets": {
+    "allowedParent": "..",
+    "requireIndependentGitRepository": true,
+    "rejectFactoryRepository": true
+  },
+  "cost": {
+    "paidProvidersEnabled": false,
+    "routingOrder": [
+      "deterministic-tool",
+      "local-model",
+      "low-cost-model",
+      "strong-model"
+    ],
+    "requireEscalationReason": true
+  },
+  "artifacts": {
+    "directory": ".factory-artifacts",
+    "recordCommands": true,
+    "recordNonSecretConfiguration": true,
+    "maxStoredCommandOutputBytes": 32768
+  },
+  "stackDefaults": {
+    "frontend": {
+      "framework": "nextjs",
+      "uiLibrary": "react",
+      "language": "typescript",
+      "styling": "tailwind-css",
+      "componentLibraries": [
+        "shadcn/ui",
+        "radix-ui"
+      ]
+    },
+    "backend": {
+      "platform": "firebase",
+      "database": "firestore",
+      "authentication": "firebase-authentication",
+      "storage": "firebase-storage",
+      "serverFunctions": {
+        "provider": "cloud-functions",
+        "when": "server-side-logic-required"
+      }
+    },
+    "deployment": {
+      "webFrontend": "vercel",
+      "backendAndData": "firebase"
+    },
+    "testing": {
+      "browser": "playwright",
+      "unitAndIntegration": "vitest"
+    },
+    "alternatives": {
+      "requireSubstantialTechnicalReason": true,
+      "requireArchitectureDecision": true
+    }
+  },
+  "tools": {
+    "search": {
+      "enabled": true,
+      "provider": "tavily",
+      "defaultDepth": "basic",
+      "defaultMaxResults": 5,
+      "maxResults": 20,
+      "defaultTimeoutSeconds": 10,
+      "maxTimeoutSeconds": 30,
+      "maxResultContentCharacters": 4000,
+      "allowedTimeRanges": [
+        "day",
+        "week",
+        "month",
+        "year"
+      ]
+    },
+    "publicFetch": {
+      "enabled": true,
+      "allowedSchemes": [
+        "http",
+        "https"
+      ],
+      "connectTimeoutSeconds": 10,
+      "readTimeoutSeconds": 15,
+      "maxRedirects": 5,
+      "maxResponseBytes": 1000000,
+      "maxTextCharacters": 50000,
+      "persistFetchedText": false
+    },
+    "browser": {
+      "enabled": true,
+      "preferredProvider": "playwright",
+      "localOnly": true,
+      "headless": true,
+      "defaultTimeoutSeconds": 10,
+      "maxTimeoutSeconds": 30,
+      "maxErrorMessages": 50,
+      "maxMessageBytes": 2048,
+      "maxTextBytes": 8192
+    },
+    "modelRouter": {
+      "enabled": false
+    }
+  },
+  "research": {
+    "enabled": true,
+    "maxSearches": 6,
+    "maxResultsPerSearch": 5,
+    "maxPages": 8,
+    "defaultSearchDepth": "basic",
+    "defaultPageContentCharacters": 12000,
+    "maxPageContentCharacters": 20000,
+    "maxBundleContentCharacters": 100000,
+    "maxSourceBundleBytes": 500000,
+    "maxResearchResultBytes": 100000,
+    "requireAdvancedJustification": true
+  },
+  "targetAuthorization": {
+    "authorizableCapabilities": [
+      "READ_ONLY",
+      "BUILD_AND_TEST",
+      "DEPENDENCY_CHANGE",
+      "PROJECT_WRITE"
+    ],
+    "alwaysBlockedCapabilities": [
+      "EXTERNAL_ACTION",
+      "DESTRUCTIVE"
+    ],
+    "maxTextFileBytes": 5000000,
+    "requireExplicitDeleteConfirmation": true
+  },
+  "runner": {
+    "defaultPolicy": "READ_ONLY",
+    "allowedPolicies": [
+      "READ_ONLY",
+      "BUILD_AND_TEST"
+    ],
+    "runAuthorizablePolicies": [
+      "DEPENDENCY_CHANGE"
+    ],
+    "defaultTimeoutSeconds": 120,
+    "maxTimeoutSeconds": 900,
+    "maxOutputBytes": 200000,
+    "safeScriptNames": [
+      "test",
+      "lint",
+      "typecheck",
+      "build",
+      "check",
+      "format:check",
+      "test:e2e"
+    ],
+    "environmentAllowlist": [
+      "PATH",
+      "PATHEXT",
+      "SYSTEMROOT",
+      "WINDIR",
+      "COMSPEC",
+      "TEMP",
+      "TMP",
+      "HOME",
+      "USERPROFILE",
+      "LANG",
+      "LC_ALL",
+      "CI",
+      "NODE_ENV"
+    ]
+  }
+}

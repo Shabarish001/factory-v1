@@ -1,0 +1,2 @@
+# Deterministic browser testing. Install Chromium separately with Playwright CLI.
+playwright>=1.40,<2
